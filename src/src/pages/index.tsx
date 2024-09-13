@@ -8,9 +8,10 @@ import { cwd } from "process";
 interface Props {
   url: string;
   imgUrl: string;
+  file: string;
 }
 
-const Home = ({ url, imgUrl }: Props) => {
+const Home = ({ url, imgUrl, file }: Props) => {
   return (
     <>
       <Head>
@@ -41,7 +42,7 @@ const Home = ({ url, imgUrl }: Props) => {
       </Head>
       <div>
         <Image 
-          src={imgUrl}
+          src={file}
           alt="画像"
           width={1200}
           height={630}
@@ -76,7 +77,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       url: process.env.BASE_URL,
-      imgUrl: '/ogp.png'
+      imgUrl: 'https://generate-ogp-images-with-ssg.vercel.app/ogp.png',
+      file: '/ogp.png'
     }
   }
 }
