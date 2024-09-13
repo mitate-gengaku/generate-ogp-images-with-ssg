@@ -7,9 +7,10 @@ import { cwd } from "process";
 
 interface Props {
   url: string;
+  imgUrl: string;
 }
 
-const Home = ({ url }: Props) => {
+const Home = ({ url, imgUrl }: Props) => {
   return (
     <>
       <Head>
@@ -27,11 +28,11 @@ const Home = ({ url }: Props) => {
         <meta property="og:type" content={"website"} />
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content={"OGPの生成の練習"} />
-        <meta property="og:image" content={"/ogp.png"} />
+        <meta property="og:image" content={imgUrl} />
 
         <meta name="twitter:title" content={"OGPの生成の練習"} />
         <meta name="twitter:description" content={"OGPの生成の練習"} />
-        <meta name="twitter:image" content={"/ogp.png"} />
+        <meta name="twitter:image" content={imgUrl} />
 
         <link
           rel="canonical"
@@ -40,7 +41,7 @@ const Home = ({ url }: Props) => {
       </Head>
       <div>
         <Image 
-          src={"/ogp.png"}
+          src={imgUrl}
           alt="画像"
           width={1200}
           height={630}
@@ -67,7 +68,7 @@ export const getStaticProps = async () => {
   const image = url.split(";base64,").pop();
 
   if(!image) return;
-
+  
   writeFileSync(path.join(cwd(), "public", 'ogp.png'), image, {
     encoding: "base64"
   });
@@ -75,6 +76,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       url: process.env.BASE_URL,
+      imgUrl: process.env.NODE_ENV === "production" ? 'https://generate-ogp-images-with-ssg.vercel.app/ogp.png' : canvas.toDataURL("image/png")
     }
   }
 }
