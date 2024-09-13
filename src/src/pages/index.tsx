@@ -9,9 +9,10 @@ interface Props {
   url: string;
   imgUrl: string;
   file: string;
+  base64URL: string
 }
 
-const Home = ({ url, imgUrl, file }: Props) => {
+const Home = ({ url, imgUrl, file, base64URL }: Props) => {
   return (
     <>
       <Head>
@@ -29,11 +30,11 @@ const Home = ({ url, imgUrl, file }: Props) => {
         <meta property="og:type" content={"website"} />
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content={"OGPの生成の練習"} />
-        <meta property="og:image" content={imgUrl} />
+        <meta property="og:image" content={base64URL} />
 
         <meta name="twitter:title" content={"OGPの生成の練習"} />
         <meta name="twitter:description" content={"OGPの生成の練習"} />
-        <meta name="twitter:image" content={imgUrl} />
+        <meta name="twitter:image" content={base64URL} />
 
         <link
           rel="canonical"
@@ -78,7 +79,8 @@ export const getStaticProps = async () => {
     props: {
       url: process.env.BASE_URL,
       imgUrl: 'https://generate-ogp-images-with-ssg.vercel.app/ogp.png',
-      file: '/ogp.png'
+      file: '/ogp.png',
+      base64URL: url,
     }
   }
 }
