@@ -76,7 +76,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       url: process.env.BASE_URL,
-      imgUrl: 'https://generate-ogp-images-with-ssg.vercel.app/ogp.png'
+      imgUrl: '/ogp.png'
     }
   }
 }
