@@ -13,6 +13,8 @@ interface Props {
 }
 
 const Home = ({ url, imgUrl, file, base64URL }: Props) => {
+
+  console.log(imgUrl)
   return (
     <>
       <Head>
