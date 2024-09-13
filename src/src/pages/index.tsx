@@ -1,5 +1,5 @@
 import { createCanvas } from "@napi-rs/canvas";
-import { writeFile, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 import Head from "next/head";
 import Image from "next/image";
 import path from "path";
